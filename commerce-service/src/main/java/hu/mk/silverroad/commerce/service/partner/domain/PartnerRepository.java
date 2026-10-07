@@ -11,5 +11,7 @@ public interface PartnerRepository {
 
 	void deleteById(long id);
 
-	void create(Partner partner);
+	void insert(Partner partner);
+
+	void update(Partner partner);
 }
