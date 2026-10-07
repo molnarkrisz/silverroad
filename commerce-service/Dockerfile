@@ -9,6 +9,7 @@ RUN mvn clean package -DskipTests
 
 # 2nd phase: Run
 FROM eclipse-temurin:25-jre-alpine
+LABEL org.opencontainers.image.source="https://github.com/molnarkrisz/silverroad"
 WORKDIR /app
 COPY --from=build /app/target/*.jar app.jar
 EXPOSE 8081

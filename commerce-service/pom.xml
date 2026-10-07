@@ -12,7 +12,7 @@
 
 	<groupId>hu.mk.silverroad</groupId>
 	<artifactId>commerce-service</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0-SNAPSHOT</version>
 	<name>commerce-service</name>
 
 	<properties>
