@@ -32,13 +32,9 @@ public class ProductEntity {
 	@JoinColumn(name = "category_id", nullable = false)
 	private CategoryEntity category;
 
-	@Column(name = "category_id", nullable = false)
-	private Long categoryId;
-
 	@Column(name = "description", columnDefinition = "TEXT")
 	private String description;
 
 	@Column(name = "price", nullable = false, precision = 19, scale = 2)
 	private BigDecimal price;
-
 }

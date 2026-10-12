@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Repository;
 
+import hu.mk.silverroad.commerce.adapter.persistence.category.SpringDataCategoryRepository;
 import hu.mk.silverroad.commerce.service.product.domain.Product;
 import hu.mk.silverroad.commerce.service.product.domain.ProductRepository;
 import lombok.RequiredArgsConstructor;
@@ -14,31 +15,33 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class ProductRepositoryAdapter implements ProductRepository {
 
-	private final SpringDataProductRepository repository;
+	private final SpringDataProductRepository productRepository;
+
+	private final SpringDataCategoryRepository categoryRepository;
 
 	@Override
 	public Optional<Product> findById(long id) {
-		return repository.findById(id).map(this::toDomain);
+		return productRepository.findById(id).map(this::toDomain);
 	}
 
 	@Override
 	public List<Product> findAll() {
-		return repository.findAll().stream().map(this::toDomain).collect(Collectors.toList());
+		return productRepository.findAll().stream().map(this::toDomain).collect(Collectors.toList());
 	}
 
 	@Override
 	public void deleteById(long id) {
-		repository.deleteById(id);
+		productRepository.deleteById(id);
 	}
 
 	@Override
 	public void insert(Product product) {
-		repository.save(toEntity(product));
+		productRepository.save(toEntity(product));
 	}
 
 	@Override
 	public void update(Product product) {
-		repository.save(toEntity(product));
+		productRepository.save(toEntity(product));
 	}
 
 	private Product toDomain(ProductEntity entity) {
@@ -49,7 +52,7 @@ public class ProductRepositoryAdapter implements ProductRepository {
 	private ProductEntity toEntity(Product domain) {
 		ProductEntity entity = new ProductEntity();
 		entity.setId(domain.id());
-		entity.setCategoryId(domain.categoryId());
+		entity.setCategory(categoryRepository.getReferenceById(domain.categoryId()));
 		entity.setName(domain.name());
 		entity.setDescription(domain.description());
 		entity.setPrice(domain.price());
