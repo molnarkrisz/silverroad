@@ -47,11 +47,10 @@ public class CategoryRepositoryAdapter implements CategoryRepository {
 	}
 
 	private CategoryEntity toEntity(Category domain) {
-		CategoryEntity entity = new CategoryEntity();
+		CategoryEntity entity = domain.id() == null ? new CategoryEntity() : repository.getReferenceById(domain.id());
 		entity.setId(domain.id());
 		entity.setName(domain.name());
-
-		CategoryEntity parent = domain.id() == null ? null : repository.getReferenceById(domain.id());
+		CategoryEntity parent = domain.parentId() == null ? null : repository.getReferenceById(domain.parentId());
 		entity.setParentCategory(parent);
 		return entity;
 	}

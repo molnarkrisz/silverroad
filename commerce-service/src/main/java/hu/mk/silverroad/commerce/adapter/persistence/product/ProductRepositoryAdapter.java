@@ -50,7 +50,8 @@ public class ProductRepositoryAdapter implements ProductRepository {
 	}
 
 	private ProductEntity toEntity(Product domain) {
-		ProductEntity entity = new ProductEntity();
+		ProductEntity entity = domain.id() == null ? new ProductEntity()
+				: productRepository.getReferenceById(domain.id());
 		entity.setId(domain.id());
 		entity.setCategory(categoryRepository.getReferenceById(domain.categoryId()));
 		entity.setName(domain.name());
