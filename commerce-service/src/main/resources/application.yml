@@ -1,8 +1,12 @@
 server:
     port: 8081
+
 spring:
     application:
         name: commerce-service
+    cache:
+        redis:
+            time-to-live: 10m
     datasource:
         url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/postgres}
         username: postgres
@@ -18,3 +22,9 @@ spring:
         open-in-view: false
     liquibase:
         change-log: classpath:db/changelog-master.yml
+
+management:
+    endpoints:
+        web:
+            exposure:
+                include: health,info,metrics,caches

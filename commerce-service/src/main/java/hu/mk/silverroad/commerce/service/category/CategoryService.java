@@ -2,6 +2,7 @@ package hu.mk.silverroad.commerce.service.category;
 
 import java.util.List;
 
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
@@ -18,14 +19,17 @@ public class CategoryService {
 
 	private final CategoryRepository categoryRepository;
 
+	@CacheEvict(cacheNames = "catalog-tree", allEntries = true)
 	public void create(Category category) {
 		categoryRepository.insert(category);
 	}
 
+	@CacheEvict(cacheNames = "catalog-tree", allEntries = true)
 	public void update(Category category) {
 		categoryRepository.update(category);
 	}
 
+	@CacheEvict(cacheNames = "catalog-tree", allEntries = true)
 	public void delete(long id) {
 		categoryRepository.deleteById(id);
 	}

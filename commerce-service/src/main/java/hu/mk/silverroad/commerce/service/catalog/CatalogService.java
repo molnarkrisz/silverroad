@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
@@ -30,6 +31,7 @@ public class CatalogService {
 
 	private final ProductRepository productRepository;
 
+	@Cacheable(cacheNames = "catalog-tree", key = "'all'")
 	public CatalogTree getCatalog() {
 		List<Category> categories = categoryRepository.findAll();
 		List<Product> products = productRepository.findAll();
