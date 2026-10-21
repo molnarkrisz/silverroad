@@ -8,15 +8,13 @@ import org.springframework.stereotype.Repository;
 
 import hu.mk.silverroad.commerce.service.partner.domain.Partner;
 import hu.mk.silverroad.commerce.service.partner.domain.PartnerRepository;
+import lombok.RequiredArgsConstructor;
 
 @Repository
-public class JpaPartnerRepositoryAdapter implements PartnerRepository {
+@RequiredArgsConstructor
+public class PartnerRepositoryAdapter implements PartnerRepository {
 
 	private final SpringDataPartnerRepository repository;
-
-	public JpaPartnerRepositoryAdapter(SpringDataPartnerRepository repository) {
-		this.repository = repository;
-	}
 
 	@Override
 	public Optional<Partner> findById(long id) {
@@ -34,7 +32,12 @@ public class JpaPartnerRepositoryAdapter implements PartnerRepository {
 	}
 
 	@Override
-	public void create(Partner partner) {
+	public void insert(Partner partner) {
+		repository.save(toEntity(partner));
+	}
+
+	@Override
+	public void update(Partner partner) {
 		repository.save(toEntity(partner));
 	}
 

@@ -19,7 +19,11 @@ public class PartnerService {
 	private final PartnerRepository partnerRepository;
 
 	public void create(Partner partner) {
-		partnerRepository.create(partner);
+		partnerRepository.insert(partner);
+	}
+
+	public void update(Partner partner) {
+		partnerRepository.update(partner);
 	}
 
 	public void delete(long id) {
