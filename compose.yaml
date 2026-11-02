@@ -13,7 +13,6 @@ services:
       - "C:/java/postgresql/data:/var/lib/postgresql/data"
     restart: unless-stopped
 
-
   redis-cache:
     image: redis:7.4-alpine
     container_name: redis
