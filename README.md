@@ -1,4 +1,2 @@
-\#TBD
 
-
-
+docker compose --profile test up

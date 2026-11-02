@@ -30,9 +30,23 @@ services:
     environment:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres-db:5432/postgres
       - SPRING_DATA_REDIS_HOST=redis-cache
-      JAVA_TOOL_OPTIONS: "-Dreactor.schedulers.defaultBoundedElasticOnVirtualThreads=true"
+      - JAVA_TOOL_OPTIONS= -Dreactor.schedulers.defaultBoundedElasticOnVirtualThreads=true
     depends_on:
       - postgres-db
       - redis-cache
+    profiles:
+      - test
+
+  order-simulator:
+    build:
+      context: ./order-simulator
+      dockerfile: Dockerfile
+    container_name: order-simulator
+    ports:
+      - "8082:8082"
+    environment:
+      - JAVA_TOOL_OPTIONS= -Dreactor.schedulers.defaultBoundedElasticOnVirtualThreads=true
+    depends_on:
+      - commerce-service
     profiles:
       - test
