@@ -1,8 +1,14 @@
-name: Commerce Service CI
+name: Order Simulator CI
 
 on:
   push:
+    paths:
+      - 'order-simulator/**'
+      - '.github/workflows/order-simulator-ci.yml'
   pull_request:
+    paths:
+      - 'order-simulator/**'
+      - '.github/workflows/order-simulator-ci.yml'
   workflow_dispatch:
 
 permissions:

@@ -2,7 +2,13 @@ name: Commerce Service CI
 
 on:
   push:
+    paths:
+      - 'commerce-service/**'
+      - '.github/workflows/commerce-service-ci.yml'
   pull_request:
+    paths:
+      - 'commerce-service/**'
+      - '.github/workflows/commerce-service-ci.yml'
   workflow_dispatch:
 
 permissions:
