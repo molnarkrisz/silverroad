@@ -1,4 +1,4 @@
-package hu.mk.silverroad.order_simulator;
+package hu.mk.silverroad.ordersimulator;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
