@@ -58,5 +58,4 @@ public class InvoiceService {
 		String invoiceNumber = PREFIX + "-" + INVOICE_NUMBER_FORMATTER.format(now) + "-" + formatted;
 		return new IssueInvoiceRequest(id, invoiceNumber, now);
 	}
-	
 }
